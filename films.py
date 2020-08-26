@@ -16,6 +16,7 @@ filmsSoup = BeautifulSoup(filmsHtml, features="html.parser")
 AllFilmsInfo = filmsSoup.find_all('div', {'class': 'item place'})
 
 filmsData = []
+print(filmsData)
 
 
 for filmInfo in AllFilmsInfo:

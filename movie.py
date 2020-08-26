@@ -19,6 +19,8 @@ for movieInfo in AllMovieInfo:
     print(movieTitle)
     premiereDate = movieInfo.find('h2', {'class': 'premieresList__dayHeader'})
     premiereDate2 = premiereDate.find('time', {'class': 'formatDate'}).text
+
+    print(movieTitle)
     print(premiereDate)
     print(premiereDate2)
 
