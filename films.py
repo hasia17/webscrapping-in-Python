@@ -1,6 +1,8 @@
+import csv
 from urllib import request
 from bs4 import BeautifulSoup
 import pandas as pd
+from fpdf import FPDF
 
 
 def fetchUrl(url):
@@ -16,7 +18,6 @@ filmsSoup = BeautifulSoup(filmsHtml, features="html.parser")
 AllFilmsInfo = filmsSoup.find_all('div', {'class': 'item place'})
 
 filmsData = []
-print(filmsData)
 
 
 for filmInfo in AllFilmsInfo:
@@ -32,8 +33,15 @@ for filmInfo in AllFilmsInfo:
     filmsData.append(filmData)
 
 
-labels=['Title', 'Premiere Date', 'Year', 'People who want to see']
-df1=pd.DataFrame.from_records(filmsData, columns=labels)
 
-print(df1)
+labels=['Title', 'Premiere Date', 'Year', 'People who want to see']
+df1=pd.DataFrame.from_records(filmsData)
+
+with open('films.csv', 'w', encoding='utf-8') as csvfile:
+    csvwriter = csv.writer(csvfile)
+    csvwriter.writerow(labels)
+    for n in filmsData:
+        csvwriter.writerow(n)
+
+
 
